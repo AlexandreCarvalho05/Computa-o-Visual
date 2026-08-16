@@ -1,26 +1,16 @@
 # Computação Visual
 
-Blog acadêmico criado para registrar a evolução ao longo da disciplina de Computação Visual. O projeto usa React, TypeScript e Vite, sem backend ou banco de dados.
+Blog acadêmico criado para registrar a evolução ao longo da disciplina de Computação Visual. O projeto usa somente HTML, CSS e JavaScript nativo, sem frameworks, backend ou banco de dados.
 
 ## Executar localmente
 
-É necessário ter Node.js 20 ou mais recente.
+Não é necessário instalar dependências nem compilar o projeto. Abra a pasta no VS Code, clique com o botão direito em `index.html` e selecione **Open with Live Server**.
 
-```bash
-npm install
-npm run dev
-```
-
-O Vite exibirá no terminal o endereço local da aplicação. Para gerar a versão de produção:
-
-```bash
-npm run build
-npm run preview
-```
+Também é possível publicar os arquivos diretamente em qualquer hospedagem de sites estáticos.
 
 ## Adicionar uma postagem
 
-Todas as postagens ficam em `src/data/posts.ts`. Para publicar uma nova:
+Todas as postagens ficam em `src/data/posts.js`. Para publicar uma nova:
 
 1. Localize o placeholder correspondente.
 2. Troque `title` e `description` pelos textos definitivos.
@@ -31,15 +21,7 @@ O progresso, os cards e a navegação anterior/próxima são atualizados automat
 
 ## Estrutura
 
-- `src/components`: componentes reutilizáveis da interface
-- `src/data`: conteúdo e tipagem das postagens
-- `src/hooks`: controle leve de navegação
-- `src/pages`: páginas da aplicação
+- `index.html`: estrutura base e metadados
+- `src/main.js`: interface, navegação e interação da matriz RGB
+- `src/data/posts.js`: conteúdo das postagens
 - `src/styles.css`: identidade visual e responsividade
-
-## Scripts
-
-- `npm run dev`: inicia o ambiente de desenvolvimento
-- `npm run build`: valida o TypeScript e gera a aplicação
-- `npm run lint`: executa a análise estática
-- `npm run preview`: abre uma prévia do build
