@@ -56,8 +56,23 @@ export const posts = [
     ]
   },
 
+  {
+    id: 'post-4', number: 4, title: 'Interpolação: como o computador redimensiona imagens?', date: '15/09/2026',
+    description: 'Como os métodos de vizinho mais próximo, interpolação linear e bilinear determinam os valores dos pixels.', published: true,
+    content: [
+      'Quando ampliamos uma imagem, ela passa a ocupar uma quantidade maior de pixels. Mas de onde vêm os valores desses novos pixels? O material de Interpolação da disciplina ajuda a entender esse processo: o computador usa os valores que já existem para estimar outros.',
+      'A interpolação aparece em operações como ampliação, redução, rotação e correções geométricas. No redimensionamento, precisamos definir quais valores da imagem original vão contribuir para cada pixel da imagem de saída.',
+      'O método do vizinho mais próximo é o mais simples entre os apresentados: ele utiliza a cor do pixel mais próximo na imagem original. No exemplo do material, uma imagem de 3 × 3 pixels é ampliada para 6 × 6. Com esse fator de escala 2, cada pixel original se transforma em um bloco de 2 × 2 pixels com o mesmo valor.',
+      'Assim, a primeira linha do exemplo, com intensidades 0, 32 e 64, passa a ter os valores 0, 0, 32, 32, 64 e 64, e também é repetida na linha seguinte. Esse método é rápido, mas a repetição deixa os blocos de pixels mais aparentes quando a ampliação é grande.',
+      'Já a interpolação linear calcula um valor intermediário entre dois valores conhecidos. A fórmula é V = (1 − α) × V₀ + α × V₁, em que α varia de 0 a 1 e indica a posição entre os extremos. Se V₀ = 0, V₁ = 100 e α = 0,5, o resultado é 50. Com α = 0,2, o resultado é 20, mais próximo do primeiro valor.',
+      'Para trabalhar nas duas dimensões de uma imagem, podemos usar a interpolação bilinear. Ela combina os quatro pixels ao redor da posição que queremos estimar, atribuindo pesos conforme a posição. Primeiro fazemos duas interpolações na horizontal e depois uma na vertical, usando os resultados anteriores.',
+      'Por exemplo, imagine quatro intensidades: 0 e 100 na linha superior, 100 e 200 na inferior. No centro desse quadrado, as interpolações horizontais resultam em 50 e 150. A interpolação vertical entre esses dois resultados fornece a intensidade 100. Fora do centro, os pesos mudam, então não basta calcular uma média simples dos quatro valores.',
+      'Comparando os métodos, o vizinho mais próximo mantém os valores dos pixels selecionados, enquanto a bilinear pode produzir valores intermediários e transições mais suaves. Essa suavização também pode deixar os contornos menos definidos. A escolha do método influencia diretamente a aparência da imagem redimensionada.',
+      'A principal ideia que fica é que aumentar a quantidade de pixels não significa recuperar detalhes que não foram registrados na imagem original. A interpolação estima valores a partir das informações disponíveis. Isso conecta o tema à representação por matrizes: uma mudança visual na imagem depende de como calculamos e organizamos os números de seus pixels.',
+      'Referência: KISHIMOTO, André. Interpolação. Material de aula de Computação Visual, Ciência da Computação, 2026.'
+    ]
+  },
   ...[
-    ['15/09/2026', 4],
     ['29/09/2026', 5],
     ['13/10/2026', 6],
     ['27/10/2026', 7],
