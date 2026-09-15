@@ -31,7 +31,10 @@ export const posts = [
       'Ainda estamos no começo da disciplina, então meu primeiro contato com OpenGL foi mais para entender sua finalidade. Ao longo das aulas, quero entender melhor como essas instruções acabam se transformando nos elementos que vemos na tela.'
     ]
   },
+<<<<<<< HEAD
 
+=======
+>>>>>>> 99a38bb (post 4)
   {
     id: 'transformacoes-de-intensidade',
     number: 3,
@@ -72,6 +75,7 @@ export const posts = [
       'Referência: KISHIMOTO, André. Interpolação. Material de aula de Computação Visual, Ciência da Computação, 2026.'
     ]
   },
+<<<<<<< HEAD
   ...[
     ['29/09/2026', 5],
     ['13/10/2026', 6],
@@ -85,7 +89,12 @@ export const posts = [
     description: 'Uma nova etapa da jornada em Computação Visual.',
     content: [],
     published: false
+=======
+  ...[['29/09/2026', 5], ['13/10/2026', 6], ['27/10/2026', 7], ['10/11/2026', 8]].map(([date, number]) => ({
+    id: `post-${number}`, number, title: 'Em breve', date,
+    description: 'Uma nova etapa da jornada em Computação Visual.', content: [], published: false
+>>>>>>> 99a38bb (post 4)
   }))
-]
+].sort((a, b) => a.number - b.number)
 
 export const publishedPosts = posts.filter(post => post.published)
