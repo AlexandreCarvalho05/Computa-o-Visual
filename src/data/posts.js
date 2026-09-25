@@ -31,10 +31,7 @@ export const posts = [
       'Ainda estamos no começo da disciplina, então meu primeiro contato com OpenGL foi mais para entender sua finalidade. Ao longo das aulas, quero entender melhor como essas instruções acabam se transformando nos elementos que vemos na tela.'
     ]
   },
-<<<<<<< HEAD
 
-=======
->>>>>>> 99a38bb (post 4)
   {
     id: 'transformacoes-de-intensidade',
     number: 3,
@@ -75,51 +72,29 @@ export const posts = [
       'Referência: KISHIMOTO, André. Interpolação. Material de aula de Computação Visual, Ciência da Computação, 2026.'
     ]
   },
-<<<<<<< HEAD
-<<<<<<< HEAD
-  ...[
-    ['29/09/2026', 5],
-    ['13/10/2026', 6],
-    ['27/10/2026', 7],
-    ['10/11/2026', 8]
-  ].map(([date, number]) => ({
-    id: `post-${number}`,
-    number,
-    title: 'Em breve',
-    date,
-    description: 'Uma nova etapa da jornada em Computação Visual.',
-    content: [],
-    published: false
-=======
-  ...[['29/09/2026', 5], ['13/10/2026', 6], ['27/10/2026', 7], ['10/11/2026', 8]].map(([date, number]) => ({
-=======
   {
-    "id": "post-5",
-    "number": 5,
-    "title": "Filtragem espacial: como os pixels vizinhos transformam uma imagem?",
-    "date": "29/09/2026",
-    "description": "Como máscaras, filtros de média e mediana ajudam a suavizar imagens, reduzir ruídos e entender o papel da vizinhança.",
-    "published": true,
-    "content": [
-      "Depois de estudar transformações de intensidade e interpolação, o próximo passo é entender a filtragem espacial. Nas transformações de intensidade, podemos calcular um novo valor olhando apenas para o próprio pixel. Já na filtragem espacial, consideramos também sua vizinhança: os pixels ao redor ajudam a determinar o resultado.",
-      "Para isso, usamos uma pequena janela chamada máscara ou kernel, que percorre a imagem. Em um filtro linear, multiplicamos as intensidades dos pixels pelos pesos correspondentes da máscara e somamos os resultados. O valor calculado é colocado na posição do pixel central em uma nova imagem. Assim, os próximos cálculos continuam usando os valores da imagem original.",
-      "Um detalhe do material que achei interessante é a diferença entre correlação e convolução. Deslizar a máscara, multiplicar os valores e somar corresponde à correlação. Na convolução, primeiro rotacionamos o kernel em 180 graus. Quando a máscara permanece igual após essa rotação, como no filtro de média com pesos iguais, as duas operações produzem o mesmo resultado.",
-      "Os filtros podem ter objetivos diferentes. Os passa-baixa suavizam variações de intensidade e podem reduzir ruídos, mas também provocam desfoque. Os passa-alta realçam mudanças bruscas, como bordas e detalhes. Nesse contexto, frequência espacial está relacionada à rapidez com que as intensidades variam de uma região para outra da imagem.",
-      "Um exemplo de suavização é o filtro de média. Em uma janela de 3 × 3 pixels, somamos as nove intensidades e dividimos o resultado por 9. Isso equivale a usar uma máscara em que cada peso vale 1/9. Se oito pixels possuem intensidade 10 e o pixel central vale 100, o novo valor central será (8 × 10 + 100) / 9 = 20. A diferença em relação aos vizinhos diminui, suavizando aquele ponto.",
-      "Também podemos calcular uma média ponderada, dando mais importância a determinadas posições da vizinhança. Nesse caso, dividimos a soma ponderada pela soma dos pesos. Essa normalização mantém a intensidade de uma região uniforme. O tamanho da máscara também influencia o efeito: nos filtros de média, janelas maiores tendem a produzir mais borramento e podem apagar detalhes pequenos.",
-      "Nem todo filtro espacial funciona por multiplicações e somas. O filtro de mediana é não linear: ele ordena as intensidades da vizinhança e escolhe o valor central dessa lista. Em uma janela de 3 × 3, usamos o quinto valor após ordenar os nove elementos. No exemplo com oito valores iguais a 10 e um igual a 100, a mediana é 10, enquanto a média é 20.",
-      "Essa diferença ajuda a entender por que a mediana é especialmente útil para reduzir o ruído do tipo sal e pimenta, que aparece como pontos brancos e pretos na imagem. Valores extremos isolados influenciam a média, mas podem ser descartados pela escolha da mediana. Ela tende a preservar melhor as bordas nesse caso, embora também possa eliminar detalhes menores que a janela utilizada.",
-      "O material ainda apresenta os filtros de mínimo, máximo e moda. O mínimo escolhe a menor intensidade da vizinhança e tende a expandir regiões escuras; o máximo escolhe a maior e tende a expandir regiões claras. Já a moda seleciona a intensidade mais frequente, sendo útil em imagens com um número limitado de cores.",
-      "Outra questão é o que acontece quando a máscara chega às extremidades da imagem, onde parte da vizinhança fica fora dos limites. É necessário definir como tratar essas posições para completar o processamento. Isso mostra que aplicar um filtro envolve tanto escolher a operação quanto pensar em como a janela percorre a matriz.",
-      "O que mais me chamou atenção foi perceber que reduzir ruído e preservar detalhes nem sempre caminham juntos. Uma suavização mais forte pode deixar a imagem menos granulada, mas também esconder bordas importantes. A escolha do filtro depende do que queremos observar e reforça uma ideia recorrente na disciplina: mudar os cálculos sobre os pixels muda diretamente a informação que conseguimos enxergar.",
-      "Referência: KISHIMOTO, André. Filtragem espacial. Material de aula de Computação Visual, Ciência da Computação, 2026."
+    id: 'post-5',
+    number: 5,
+    title: 'Filtragem espacial: suavizando imagens e destacando detalhes',
+    date: '29/09/2026',
+    description: 'Como a vizinhança de um pixel pode ajudar a reduzir ruídos e realçar características de uma imagem.',
+    published: true,
+    content: [
+      'Nesta etapa da disciplina, estudamos a filtragem espacial, uma forma de processar imagens considerando cada pixel e seus vizinhos. Diferente das transformações de intensidade, que podem trabalhar com um pixel individualmente, aqui usamos as informações de uma pequena região para calcular um novo valor.',
+      'Para realizar esse processo, utilizamos uma máscara, também chamada de kernel. Ela funciona como uma janela que percorre a imagem. Uma máscara de 3 × 3, por exemplo, abrange o pixel central e os oito pixels ao redor. O resultado da operação é colocado na posição correspondente em uma nova imagem, preservando os valores originais para os próximos cálculos.',
+      'Um exemplo simples é o filtro de média. Ele soma as intensidades dos pixels da vizinhança e divide pela quantidade de elementos. Se uma janela contém oito pixels com intensidade 10 e um com intensidade 100, a média será 20. Ao substituir o valor central por essa média, o filtro suaviza as diferenças naquela região.',
+      'Esse filtro é classificado como passa-baixa. Ele pode reduzir ruídos, mas também provoca desfoque, pois suaviza variações que representam bordas e detalhes. Nos filtros de média, janelas maiores tendem a produzir mais borramento. Também podemos usar uma média ponderada, atribuindo pesos diferentes às posições da máscara.',
+      'Já os filtros passa-alta realçam mudanças bruscas de intensidade, ajudando a destacar bordas e outras características da imagem. Achei interessante perceber que a escolha do filtro depende do objetivo: suavizar uma região e destacar seus contornos exigem operações diferentes.',
+      'Outro método apresentado foi o filtro de mediana. Nesse caso, ordenamos os valores da vizinhança e selecionamos o elemento central da lista. Em uma janela de 3 × 3, usamos o quinto valor após ordenar as nove intensidades. No exemplo com oito valores iguais a 10 e um igual a 100, a mediana será 10, enquanto a média será 20.',
+      'A mediana é especialmente útil para reduzir o ruído do tipo sal e pimenta, que aparece como pontos brancos e pretos espalhados pela imagem. Como valores extremos isolados não influenciam o resultado da mesma maneira que na média, esse filtro costuma preservar melhor as bordas nessa situação.',
+      'O material também diferencia correlação e convolução. Deslizar uma máscara pela imagem, multiplicar seus pesos pelas intensidades correspondentes e somar os resultados é uma correlação. Na convolução, primeiro rotacionamos a máscara em 180 graus. Quando ela permanece igual após essa rotação, as duas operações produzem o mesmo resultado.',
+      'O que mais me chamou atenção foi perceber que reduzir ruídos também pode significar perder detalhes. Uma imagem mais suave nem sempre apresenta melhor as informações que queremos observar. Por isso, entender o efeito de cada filtro e o tamanho da vizinhança é fundamental para escolher como processar a imagem.',
+      'Referência: KISHIMOTO, André. Filtragem espacial. Material de aula de Computação Visual, Ciência da Computação, 2026.'
     ]
   },
   ...[['13/10/2026', 6], ['27/10/2026', 7], ['10/11/2026', 8]].map(([date, number]) => ({
->>>>>>> 90e8ae6 (Adiciona novo post sobre computação visual)
     id: `post-${number}`, number, title: 'Em breve', date,
     description: 'Uma nova etapa da jornada em Computação Visual.', content: [], published: false
->>>>>>> 99a38bb (post 4)
   }))
 ].sort((a, b) => a.number - b.number)
 
