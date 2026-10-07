@@ -92,7 +92,30 @@ export const posts = [
       'Referência: KISHIMOTO, André. Filtragem espacial. Material de aula de Computação Visual, Ciência da Computação, 2026.'
     ]
   },
-  ...[['13/10/2026', 6], ['27/10/2026', 7], ['10/11/2026', 8]].map(([date, number]) => ({
+  {
+    "id": "post-6",
+    "number": 6,
+    "title": "Detecção de bordas: encontrando os contornos de uma imagem",
+    "date": "13/10/2026",
+    "description": "Como as variações de intensidade, os gradientes e o detector de Canny ajudam a identificar bordas em uma imagem.",
+    "published": true,
+    "content": [
+      "Depois de estudar a filtragem espacial, o próximo passo foi entender como identificar bordas em uma imagem. O material de Detecção de bordas mostra que mudanças bruscas nos valores dos pixels podem revelar contornos e separar regiões com características diferentes. Essas mudanças ajudam a representar a forma dos elementos presentes na cena.",
+      "Uma borda pode aparecer por diferentes motivos: o limite entre objetos, uma mudança na cor de uma superfície, uma alteração na iluminação ou na orientação da superfície. Por isso, nem toda borda corresponde ao contorno de um objeto. Uma sombra, por exemplo, também pode provocar uma variação forte de intensidade.",
+      "Para encontrar essas variações, podemos pensar na imagem como uma função de intensidade e usar derivadas. Em uma região com valores constantes, a primeira derivada é zero. Ao percorrer uma transição do escuro para o claro, ela é positiva; no sentido contrário, é negativa. O valor absoluto dessa resposta ajuda a indicar a força da mudança.",
+      "Um exemplo simples é uma sequência de intensidades 20, 20, 20, 180 e 180. Calculando a diferença entre cada valor e o seguinte, obtemos 0, 0, 160 e 0. O valor 160 destaca justamente a passagem entre a região escura e a clara. Esse cálculo ilustra como uma diferença entre pixels vizinhos pode indicar uma possível borda.",
+      "Como uma imagem tem duas dimensões, analisamos as variações nas direções horizontal e vertical. Essas duas componentes formam o gradiente: sua magnitude indica a intensidade da variação, enquanto sua direção aponta para o aumento mais rápido da intensidade, perpendicular à borda. Uma magnitude alta pode indicar uma transição mais abrupta.",
+      "O material apresenta filtros que aproximam essas variações usando pequenas máscaras. Roberts utiliza máscaras de 2 × 2 e destaca variações diagonais. Prewitt e Sobel usam máscaras de 3 × 3 para calcular componentes nas direções horizontal e vertical. No Sobel, os pesos centrais de cada faixa são maiores, combinando a diferença de intensidades com uma suavização na direção transversal.",
+      "Também podemos trabalhar com a segunda derivada, por meio do operador Laplaciano. Nesse caso, mudanças de sinal, chamadas de cruzamentos por zero, podem ajudar a localizar bordas. Achei interessante perceber que existem diferentes maneiras de procurar a mesma transição: pela força da primeira derivada ou pelo comportamento da segunda.",
+      "Uma dificuldade é que o ruído também produz diferenças grandes entre pixels vizinhos. Assim, aplicar derivadas diretamente pode destacar pontos que não representam as bordas que queremos encontrar. Uma solução apresentada é suavizar a imagem com um filtro Gaussiano antes de calcular as derivadas, ou combinar essas operações usando derivadas do próprio filtro.",
+      "O detector de Canny organiza esse processo em etapas. Primeiro, combina a suavização Gaussiana com o cálculo das variações nas direções x e y para obter a magnitude e a orientação do gradiente. Depois, aplica a supressão de não-máximos: compara cada magnitude com as dos vizinhos na direção do gradiente e mantém os picos locais, deixando as bordas mais finas.",
+      "Na etapa de histerese, Canny utiliza dois limiares, um baixo e um alto. As respostas acima do limiar alto são consideradas bordas fortes. As respostas entre os dois limiares são mantidas quando estão conectadas a bordas fortes, inclusive por uma sequência de pontos fracos. Já as respostas abaixo do limiar baixo são descartadas. Isso ajuda a preservar a continuidade dos contornos e a eliminar respostas fracas isoladas.",
+      "A quantidade de suavização também influencia o resultado. Um sigma menor no filtro Gaussiano preserva detalhes mais finos, mas deixa mais ruído. Um sigma maior suaviza mais a imagem e favorece contornos de maior escala, podendo apagar detalhes e prejudicar a localização precisa das bordas. Essa escolha retoma o equilíbrio entre reduzir ruídos e preservar informações que vimos na filtragem espacial.",
+      "O que mais me chamou atenção foi perceber que detectar bordas não é simplesmente desenhar linhas onde enxergamos objetos. O computador procura mudanças numéricas na imagem, e essas mudanças precisam ser analisadas para separar contornos relevantes de ruídos e outras variações. Um bom detector deve encontrar as bordas, localizá-las com precisão e evitar várias respostas para a mesma borda.",
+      "Referência: KISHIMOTO, André. Detecção de bordas. Material de aula de Computação Visual, Ciência da Computação, 2026."
+    ]
+  },
+  ...[['27/10/2026', 7], ['10/11/2026', 8]].map(([date, number]) => ({
     id: `post-${number}`, number, title: 'Em breve', date,
     description: 'Uma nova etapa da jornada em Computação Visual.', content: [], published: false
   }))
