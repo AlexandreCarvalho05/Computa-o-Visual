@@ -115,7 +115,31 @@ export const posts = [
       "Referência: KISHIMOTO, André. Detecção de bordas. Material de aula de Computação Visual, Ciência da Computação, 2026."
     ]
   },
-  ...[['27/10/2026', 7], ['10/11/2026', 8]].map(([date, number]) => ({
+  {
+    id: 'post-7',
+    number: 7,
+    title: 'Domínio da frequência: enxergando imagens de outra forma',
+    date: '27/10/2026',
+    description: 'Como a transformada de Fourier, a filtragem e a amostragem ajudam a entender os detalhes e os padrões de uma imagem.',
+    published: true,
+    content: [
+      'Até aqui, estudamos imagens principalmente no domínio espacial, trabalhando diretamente com os valores dos pixels e suas vizinhanças. No material de Domínio da Frequência, conhecemos outra forma de representar essas mesmas informações: analisar as frequências que compõem uma imagem. Essa mudança ajuda a entender tanto a filtragem quanto alguns problemas que aparecem ao redimensionar imagens.',
+      'Nesse contexto, frequência espacial indica a rapidez com que a intensidade varia ao longo da imagem. Uma região com mudanças suaves apresenta componentes de baixa frequência. Já transições rápidas, como bordas, detalhes finos e certos ruídos, envolvem componentes de alta frequência. Não se trata da frequência das cores da luz, mas das variações entre as intensidades dos pixels.',
+      'A ideia apresentada por Fourier é representar funções periódicas pela combinação de senos e cossenos de diferentes frequências, cada um com seu coeficiente. Para uma imagem digital, usamos a transformada discreta de Fourier em duas dimensões, que transforma a matriz de intensidades em um conjunto de coeficientes associados às frequências nas duas direções da imagem.',
+      'Esses coeficientes são números complexos, com partes real e imaginária. A magnitude indica quanto de cada componente de frequência está presente e costuma ser usada para visualizar o espectro de Fourier. A fase descreve o alinhamento dessas componentes e também carrega informações importantes sobre a estrutura da imagem. Por isso, visualizar apenas a magnitude não equivale a guardar todas as informações necessárias para reconstruí-la.',
+      'Uma característica importante é a possibilidade de aplicar a transformada inversa e recuperar a imagem a partir dos coeficientes completos. Se não alteramos esses coeficientes, a transformação permite retornar à representação original, considerando a precisão dos cálculos. Quando filtramos o espectro, a transformada inversa produz uma imagem modificada de acordo com as frequências que foram preservadas ou atenuadas.',
+      'Um exemplo que ajuda a entender essa representação é uma imagem com intensidade constante. Como não há variações entre os pixels, somente a componente de frequência zero está presente. Já um impulso, como um único pixel diferente de zero sobre um fundo zero, possui componentes em todas as frequências. Achei interessante perceber que algo muito localizado no espaço pode estar espalhado pelo domínio da frequência.',
+      'O material também apresenta uma conexão com a filtragem espacial: a convolução no domínio espacial corresponde à multiplicação no domínio da frequência. Assim, podemos transformar a imagem e o filtro, multiplicar seus coeficientes correspondentes e aplicar a transformada inversa. Na implementação com a transformada discreta, é preciso cuidar das bordas e do preenchimento das matrizes para reproduzir a convolução linear desejada.',
+      'Um filtro passa-baixa preserva as baixas frequências e atenua as altas. O resultado tende a ser uma imagem mais suave, com menos detalhes finos e, dependendo do ruído, menos interferências. Essa ideia retoma o que vimos no filtro de média: reduzir variações rápidas também pode borrar bordas. Um filtro passa-tudo, por sua vez, preserva todas as componentes e mantém a imagem.',
+      'Outro assunto importante é a amostragem. Para representar uma função contínua no computador, selecionamos valores em posições discretas; a quantização representa as amplitudes dessas amostras em níveis discretos. Se o intervalo entre amostras é ΔT, a taxa de amostragem é 1/ΔT. Quanto menor esse intervalo, maior a quantidade de amostras por unidade.',
+      'Segundo o teorema da amostragem apresentado no material, uma função de banda limitada pode ser reconstruída a partir de suas amostras quando a taxa de amostragem é maior que o dobro da maior frequência presente. Se amostramos abaixo desse limite, componentes diferentes podem se confundir. Esse efeito é chamado de aliasing e impede recuperar de forma única o sinal original a partir dessas amostras.',
+      'Nas imagens, o aliasing espacial pode aparecer como serrilhados ou padrões que não existiam na cena original. Um exemplo intuitivo é reduzir uma imagem com várias listras muito finas: ao descartar linhas e colunas, podemos criar uma aparência diferente do padrão inicial. O material também cita o aliasing temporal, como o efeito de uma roda que parece girar para trás em um vídeo quando a sequência de quadros não representa adequadamente seu movimento.',
+      'Para reduzir esses efeitos na diminuição de uma imagem, aplicamos um filtro passa-baixa antes da reamostragem. Essa etapa, chamada de antialiasing, atenua frequências altas demais para a nova resolução. Fazer a suavização antes é fundamental, porque depois que diferentes frequências se confundem não basta borrar o resultado para recuperar as informações perdidas.',
+      'O que mais me chamou atenção foi perceber como os temas da disciplina se conectam. A interpolação estima valores ao redimensionar uma imagem, a filtragem controla suas variações e o domínio da frequência ajuda a explicar quais informações podem ser preservadas nesse processo. Uma imagem pode continuar sendo uma matriz de números, mas mudar sua representação revela características que não são tão evidentes quando olhamos apenas para os pixels.',
+      'Referência: KISHIMOTO, André. Domínio da Frequência. Material de aula de Computação Visual, Ciência da Computação, 2026.'
+    ]
+  },
+  ...[['10/11/2026', 8]].map(([date, number]) => ({
     id: `post-${number}`, number, title: 'Em breve', date,
     description: 'Uma nova etapa da jornada em Computação Visual.', content: [], published: false
   }))
