@@ -139,10 +139,22 @@ export const posts = [
       'Referência: KISHIMOTO, André. Domínio da Frequência. Material de aula de Computação Visual, Ciência da Computação, 2026.'
     ]
   },
-  ...[['10/11/2026', 8]].map(([date, number]) => ({
-    id: `post-${number}`, number, title: 'Em breve', date,
-    description: 'Uma nova etapa da jornada em Computação Visual.', content: [], published: false
-  }))
+  {
+    id: 'post-8',
+    number: 8,
+    title: 'O que ficou da disciplina',
+    date: '10/11/2026',
+    description: 'Uma reflexão sobre o que aprendi nas aulas e escrevendo este blog.',
+    published: true,
+    content: [
+      'No começo da disciplina, eu achava que ia ver mais coisas ligadas a criar imagens, gráficos e animações. Acabou tendo bem mais matemática e trabalho com pixels do que eu imaginava. A ideia de uma imagem ser uma matriz parecia simples no início, mas foi a base para entender o resto.',
+      'O que mais ficou para mim foi entender melhor coisas que eu já via no dia a dia. Aumentar uma imagem e ela ficar borrada, mexer no contraste ou aplicar um filtro eram coisas que eu fazia sem pensar muito. Com as aulas, comecei a entender o que acontece com os pixels nessas operações e por que o resultado nem sempre fica bom.',
+      'Também percebi que mexer em uma imagem envolve fazer escolhas. Um filtro pode tirar ruído e acabar apagando um detalhe junto. Aumentar a quantidade de pixels não traz de volta uma informação que não estava ali. Parece algo óbvio depois de estudar, mas antes eu não parava para pensar nisso.',
+      'A parte de frequência e Fourier foi menos intuitiva para mim. Pensar na imagem de outro jeito, sem olhar diretamente para os pixels, exigiu mais atenção. Mesmo assim, deu para perceber a relação com os filtros e com os problemas que aparecem quando reduzimos uma imagem.',
+      'Escrever os posts me fez voltar aos conteúdos e tentar explicar o que eu tinha entendido. Em alguns momentos, organizar uma explicação foi mais difícil do que acompanhar o material. Isso ajudou a perceber quais ideias estavam mais claras e quais eu precisava rever.',
+      'Fecho o blog entendendo melhor como o computador trabalha com imagens. Não saio dominando tudo, mas consigo ligar o que aparece na tela a algumas das operações que estudamos. Foi isso que mais aproveitei da disciplina: entender um pouco melhor coisas que antes eu só usava.'
+    ]
+  }
 ].sort((a, b) => a.number - b.number)
 
 export const publishedPosts = posts.filter(post => post.published)
